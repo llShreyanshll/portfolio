@@ -26,10 +26,10 @@
                 <a href="https://github.com/llShreyanshll" target="_blank" class="nav-left-link">GITHUB ↗</a>
             </div>
         </div>
-        <a href="resume.html" class="nav-center">AI/ML ENGINEER</a>
+        <span class="nav-center">AI/ML ENGINEER</span>
         <div class="nav-right">
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">DARK MODE</button>
-            <a href="resume.html" class="nav-cta nav-cta--filled">RESUME &nbsp;↗</a>
+            <a href="assets/Shreyansh_Kumar_Resume.pdf" download class="nav-cta nav-cta--filled">RESUME &nbsp;↓</a>
             <a href="#contact" class="nav-cta">LET'S TALK &nbsp;↗</a>
         </div>
     </nav>
@@ -37,11 +37,10 @@
     <!-- Hero -->
     <section class="hero" id="hero">
         <div class="hero-inner">
-            <!-- Top row: text + image -->
             <div class="hero-top">
                 <div class="hero-left">
                     <div class="hero-content">
-                        <a href="resume.html" class="hero-name-link">
+                        <a href="#experience" class="hero-name-link">
                         <h1 class="hero-name">
                             <span class="hero-line-wrap"><span class="hero-line">SHREYANSH</span></span>
                             <span class="hero-line-wrap"><span class="hero-line" style="animation-delay:0.18s">KUMAR</span></span>
@@ -50,13 +49,11 @@
                         <p class="hero-tagline">Building intelligent systems<br>that scale and deliver.</p>
                     </div>
                 </div>
-                <!-- Right: gritty portrait -->
                 <div class="hero-image-wrap">
                     <div class="hero-image-grain"></div>
                     <img src="assets/hero-portrait.jpg" alt="Portrait" class="hero-image">
                 </div>
             </div>
-            <!-- Full-width footer bar -->
             <div class="hero-footer">
                 <div class="hero-footer-left">
                     <span>AI / ML ENGINEER</span>
@@ -76,31 +73,178 @@
 
     <!-- About -->
     <section class="about" id="about">
-        <div class="section-label">01 — ABOUT</div>
         <div class="about-body">
             <div class="about-cols">
-                <div class="about-col-text">
-                    <p>I studied Applied Data Analytics at Boston University and Computer Science at Bennett University. Before that, I cut my teeth at data consultancies in India, where I learned that clean models mean nothing if the delivery doesn't land.</p>
-                    <p>Right now I'm at Droisys in Las Vegas, working across the full stack of an ML-powered surveillance system. I care about the craft — logging, observability, pipelines that don't break at 3am — as much as the models.</p>
-                    <p>Outside of work I follow F1 with the same obsession I bring to a production incident — every sector time, every team radio. When I'm not watching races I'm usually deep in a film or a playlist, drawn to the kind of storytelling that trusts silence as much as noise.</p>
-                    <!-- ↑ Update this paragraph with your own story -->
+                <div class="about-left">
+                    <div class="section-label">01 — ABOUT</div>
+                    <div class="about-col-text">
+                        <p>I studied Applied Data Analytics at Boston University and Computer Science at Bennett University. Before that, I cut my teeth at data consultancies in India, where I learned that clean models mean nothing if the delivery doesn't land.</p>
+                        <p>Right now I'm at Droisys in Las Vegas, working across the full stack of an ML-powered surveillance system. I care about the craft — logging, observability, pipelines that don't break at 3am — as much as the models.</p>
+                        <p>Outside of work I follow F1 with the same obsession I bring to a production incident — every sector time, every team radio. When I'm not watching races I'm usually deep in a film or a playlist, drawn to the kind of storytelling that trusts silence as much as noise.</p>
+                    </div>
+                    <div class="about-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">CURRENTLY</span>
+                            <span class="meta-value">AI/ML Engineer @ Droisys, Las Vegas</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">REACH ME</span>
+                            <span class="meta-value"><a href="tel:6172590101" class="meta-link">(617) 259-0101</a> · <a href="https://www.linkedin.com/in/shreyansh2304" target="_blank" class="meta-link">LinkedIn ↗</a></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">BASED IN</span>
+                            <span class="meta-value">Las Vegas, NV</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">EDUCATION</span>
+                            <span class="meta-value">MS Applied Data Analytics, Boston University</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-meta">
-                    <div class="meta-item">
-                        <span class="meta-label">CURRENTLY</span>
-                        <span class="meta-value">AI/ML Engineer @ Droisys, Las Vegas</span>
+                <div class="about-right">
+                    <div class="section-label">02 — SKILLS</div>
+                    <!-- ╔══════════════════════════════════════════════════════╗
+                         ║  ABOUT SKILLS — VARIANT A: Canvas Network  (ACTIVE) ║
+                         ╚══════════════════════════════════════════════════════╝
+                         To switch: uncomment Variant B below, delete this block.
+                         CSS: uncomment .about-skill-grid block in style.css,
+                              comment out .about-skills-float block. -->
+                    <div class="about-skills-float" id="aboutSkillsFloat"></div>
+
+                    <!-- ╔══════════════════════════════════════════════════════╗
+                         ║  ABOUT SKILLS — VARIANT B: Static Pill Grid         ║
+                         ╚══════════════════════════════════════════════════════╝
+                         To switch: remove the comment tags below, delete Variant A above.
+                         CSS: uncomment .about-skill-grid block in style.css,
+                              comment out .about-skills-float block.
+                    <div class="about-skill-grid">
+                        <div class="asg-group">
+                            <h4 class="asg-title">ML &amp; AI SYSTEMS</h4>
+                            <div class="asg-pills">
+                                <span>RAG</span><span>LLMs</span><span>NLP</span>
+                                <span>Computer Vision</span><span>Time Series</span>
+                                <span>Multi-Agent</span><span>Embeddings</span>
+                                <span>Feature Engineering</span>
+                            </div>
+                        </div>
+                        <div class="asg-group">
+                            <h4 class="asg-title">FRAMEWORKS</h4>
+                            <div class="asg-pills">
+                                <span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span>
+                                <span>Keras</span><span>LangChain</span><span>CrewAI</span>
+                                <span>Hugging Face</span><span>XGBoost</span>
+                            </div>
+                        </div>
+                        <div class="asg-group">
+                            <h4 class="asg-title">CLOUD &amp; DATA</h4>
+                            <div class="asg-pills">
+                                <span>GCP</span><span>AWS</span><span>Azure</span>
+                                <span>BigQuery</span><span>Apache Spark</span>
+                                <span>PostgreSQL</span><span>ETL</span>
+                            </div>
+                        </div>
+                        <div class="asg-group">
+                            <h4 class="asg-title">LANGUAGES</h4>
+                            <div class="asg-pills">
+                                <span>Python</span><span>SQL</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="meta-item">
-                        <span class="meta-label">REACH ME</span>
-                        <span class="meta-value"><a href="tel:6172590101" class="meta-link">(617) 259-0101</a> · <a href="https://www.linkedin.com/in/shreyansh23042304" target="_blank" class="meta-link">LinkedIn ↗</a></span>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience" id="experience">
+        <div class="section-label">03 — EXPERIENCE</div>
+        <div class="exp-list">
+
+            <div class="exp-item reveal">
+                <div class="exp-meta">
+                    <span class="exp-num">01</span>
+                    <span class="exp-period">02/2026 — PRESENT</span>
+                </div>
+                <div class="exp-body">
+                    <div class="exp-top">
+                        <h3 class="exp-role">AI/ML Engineer</h3>
+                        <span class="exp-company">Droisys &mdash; Las Vegas, NV</span>
                     </div>
-                    <div class="meta-item">
-                        <span class="meta-label">BASED IN</span>
-                        <span class="meta-value">Las Vegas, NV</span>
+                    <p class="exp-desc">Hardened observability across a multi-module Spring Boot codebase with SLF4J structured logging. Contributed to the Table Guard Web API exposing JWT-secured REST resources for casino surveillance. Supported ETL + rule-engine pipelines ingesting and transforming table game data for real-time risk signals.</p>
+                    <div class="exp-tags">
+                        <span>Spring Boot</span>
+                        <span>SLF4J</span>
+                        <span>REST APIs</span>
+                        <span>PostgreSQL</span>
+                        <span>ETL</span>
+                        <span>JWT</span>
                     </div>
-                    <div class="meta-item">
-                        <span class="meta-label">EDUCATION</span>
-                        <span class="meta-value">MS Applied Data Analytics, Boston University</span>
+                </div>
+            </div>
+
+            <div class="exp-item reveal">
+                <div class="exp-meta">
+                    <span class="exp-num">02</span>
+                    <span class="exp-period">03/2025 — 02/2026</span>
+                </div>
+                <div class="exp-body">
+                    <div class="exp-top">
+                        <h3 class="exp-role">Lead Data Analyst</h3>
+                        <span class="exp-company">Chicago Education Advocacy Cooperative &mdash; Remote</span>
+                    </div>
+                    <p class="exp-desc">Designed an AI-powered multi-agent tutoring platform that improved learner outcomes by 30% and lifted engagement by 35%. Architected a scalable RAG pipeline with recursive chunking and metadata-aware vector search, cutting topic confusion by 42%. Built intelligent document processing with 98% extraction accuracy and 90% reduction in API costs.</p>
+                    <div class="exp-tags">
+                        <span>LLMs</span>
+                        <span>RAG</span>
+                        <span>Multi-Agent</span>
+                        <span>LangChain</span>
+                        <span>CrewAI</span>
+                        <span>OCR</span>
+                        <span>Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exp-item reveal">
+                <div class="exp-meta">
+                    <span class="exp-num">03</span>
+                    <span class="exp-period">08/2022 — 06/2023</span>
+                </div>
+                <div class="exp-body">
+                    <div class="exp-top">
+                        <h3 class="exp-role">Data Scientist</h3>
+                        <span class="exp-company">Nexdigm &mdash; Gurugram, India</span>
+                    </div>
+                    <p class="exp-desc">Led development of a Python-based time series forecasting tool using ARIMA, SARIMA, SARIMAX, VARMAX, and RNN models, reducing exploratory time by 70%. Automated hyperparameter tuning across 50+ iterations per dataset, cutting delivery from 3 weeks to 4 days. Enhanced model accuracy by 12% with iterative feature engineering.</p>
+                    <div class="exp-tags">
+                        <span>Time Series</span>
+                        <span>ARIMA</span>
+                        <span>RNN</span>
+                        <span>Python</span>
+                        <span>Feature Engineering</span>
+                        <span>Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exp-item reveal">
+                <div class="exp-meta">
+                    <span class="exp-num">04</span>
+                    <span class="exp-period">02/2022 — 06/2022</span>
+                </div>
+                <div class="exp-body">
+                    <div class="exp-top">
+                        <h3 class="exp-role">Data Analyst Intern</h3>
+                        <span class="exp-company">TransOrg Analytics &mdash; Gurugram, India</span>
+                    </div>
+                    <p class="exp-desc">Predicted sales using ARIMA and Prophet models, reducing overstock by 12% and stockouts by 9%. Improved product discovery with semantic embedding search, boosting session duration by 30%. Developed K-Means/DBSCAN customer segments for personalized campaigns that raised repeat purchase rates by 18%.</p>
+                    <div class="exp-tags">
+                        <span>Prophet</span>
+                        <span>Semantic Search</span>
+                        <span>K-Means</span>
+                        <span>DBSCAN</span>
+                        <span>Embeddings</span>
                     </div>
                 </div>
             </div>
@@ -108,9 +252,91 @@
         </div>
     </section>
 
+    <!-- Projects -->
+    <section class="projects" id="projects">
+        <div class="section-label">04 — PROJECTS</div>
+        <div class="projects-grid">
+
+            <div class="project-card reveal">
+                <div class="project-inner">
+                    <span class="project-num">01</span>
+                    <h3 class="project-title">Big Data Dining Recommendation System</h3>
+                    <p class="project-desc">Large-scale retrieval-augmented recommendation engine over the 8GB+ Yelp dataset. Semantic retrieval paired with LLM-based generation delivers context-aware dining suggestions across 10K+ businesses with low-latency querying.</p>
+                    <div class="project-tags">
+                        <span>RAG</span>
+                        <span>LangChain</span>
+                        <span>BigQuery</span>
+                        <span>Vector DBs</span>
+                        <span>NLP</span>
+                        <span>Semantic Search</span>
+                    </div>
+                    <div class="project-stat">
+                        <div>
+                            <span class="stat-val">95%</span>
+                            <span class="stat-label">Response Accuracy</span>
+                        </div>
+                        <div>
+                            <span class="stat-val">8GB+</span>
+                            <span class="stat-label">Dataset Size</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-inner">
+                    <span class="project-num">02</span>
+                    <h3 class="project-title">Health Risk Classification Pipeline</h3>
+                    <p class="project-desc">End-to-end ML classification pipeline with advanced feature engineering and hyperparameter tuning. SMOTE for class imbalance and Boruta for feature selection raised predictive performance by ~18%. Dimensionality reduction cut training time by ~30% without accuracy loss.</p>
+                    <div class="project-tags">
+                        <span>Scikit-learn</span>
+                        <span>SMOTE</span>
+                        <span>Boruta</span>
+                        <span>Lasso</span>
+                        <span>Feature Engineering</span>
+                    </div>
+                    <div class="project-stat">
+                        <div>
+                            <span class="stat-val">~18%</span>
+                            <span class="stat-label">Performance Gain</span>
+                        </div>
+                        <div>
+                            <span class="stat-val">~30%</span>
+                            <span class="stat-label">Faster Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certs" id="certs">
+        <div class="section-label">05 — CERTIFICATIONS</div>
+        <div class="certs-list">
+            <div class="cert-item reveal">
+                <span class="cert-issuer">MICROSOFT</span>
+                <span class="cert-name">AZ-900 Azure Fundamentals</span>
+            </div>
+            <div class="cert-item reveal">
+                <span class="cert-issuer">MICROSOFT</span>
+                <span class="cert-name">AI-900 Azure AI Fundamentals</span>
+            </div>
+            <div class="cert-item reveal">
+                <span class="cert-issuer">ORACLE</span>
+                <span class="cert-name">Cloud Infrastructure Foundations &amp; Cloud Operations Associate</span>
+            </div>
+            <div class="cert-item reveal">
+                <span class="cert-issuer">IBM</span>
+                <span class="cert-name">Data Science &amp; Machine Learning Professional</span>
+            </div>
+        </div>
+    </section>
+
     <!-- Interests -->
     <section class="interests" id="interests">
-        <div class="section-label">02 — BEYOND THE WORK</div>
+        <div class="section-label">06 — BEYOND THE WORK</div>
         <div class="interests-grid">
 
             <div class="interest-item reveal">
@@ -149,8 +375,6 @@
                 <div class="interest-body">
                     <h3 class="interest-title">Music</h3>
                     <p class="interest-desc">Music is the background layer running under everything. The right album changes how a problem feels — I think in playlists as much as pipelines.</p>
-
-                    <!-- Scrolling ticker — duplicated for seamless loop -->
                     <div class="music-ticker">
                         <div class="music-ticker-inner">
                             <span>The Weeknd</span><span class="ticker-dot">·</span>
@@ -161,7 +385,6 @@
                             <span>Nusrat Fateh Ali Khan</span><span class="ticker-dot">·</span>
                             <span>Cigarettes After Sex</span><span class="ticker-dot">·</span>
                             <span>Joji</span><span class="ticker-dot">·</span>
-                            <!-- duplicate for seamless loop -->
                             <span>The Weeknd</span><span class="ticker-dot">·</span>
                             <span>Sufjan Stevens</span><span class="ticker-dot">·</span>
                             <span>Madvillain</span><span class="ticker-dot">·</span>
@@ -180,7 +403,6 @@
                 <div class="interest-body">
                     <h3 class="interest-title">Formula 1</h3>
                     <p class="interest-desc">F1 is the only sport where engineering and instinct collide at 300km/h. I follow every race, every team radio, every sector time — and there's only one driver worth talking about.</p>
-
                     <div class="f1-card">
                         <span class="f1-watermark">1</span>
                         <div class="f1-card-inner">
@@ -267,15 +489,15 @@
 
     <!-- Contact -->
     <section class="contact" id="contact">
-        <div class="section-label">03 — CONTACT</div>
-        <h2 class="contact-heading reveal">LET'S <a href="resume.html" style="color:#FAEA5C;text-decoration:none">BUILD</a><br>SOMETHING<br>TOGETHER.</h2>
+        <div class="section-label">07 — CONTACT</div>
+        <h2 class="contact-heading reveal">LET'S <a href="#experience" class="contact-build-link">BUILD</a><br>SOMETHING<br>TOGETHER.</h2>
         <div class="contact-links reveal">
             <a href="mailto:shreyanshkumar2304@gmail.com" class="contact-link">
                 <span class="cl-label">EMAIL</span>
                 <span class="cl-value">shreyanshkumar2304@gmail.com</span>
                 <span class="cl-arrow">↗</span>
             </a>
-            <a href="https://www.linkedin.com/in/shreyansh23042304" target="_blank" class="contact-link">
+            <a href="https://www.linkedin.com/in/shreyansh2304" target="_blank" class="contact-link">
                 <span class="cl-label">LINKEDIN</span>
                 <span class="cl-value">linkedin.com/in/shreyansh2304</span>
                 <span class="cl-arrow">↗</span>
@@ -285,10 +507,10 @@
                 <span class="cl-value">github.com/llShreyanshll</span>
                 <span class="cl-arrow">↗</span>
             </a>
-            <a href="resume.html" class="contact-link">
+            <a href="assets/Shreyansh_Kumar_Resume.pdf" download class="contact-link">
                 <span class="cl-label">RESUME</span>
-                <span class="cl-value">View full résumé</span>
-                <span class="cl-arrow">↗</span>
+                <span class="cl-value">Download PDF</span>
+                <span class="cl-arrow">↓</span>
             </a>
         </div>
     </section>

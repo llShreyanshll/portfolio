@@ -158,3 +158,187 @@ const statObs  = new IntersectionObserver(entries => {
     });
 }, { threshold: 0.6 });
 statVals.forEach(el => statObs.observe(el));
+
+// ── roundRect polyfill (Safari < 15.4) ──────────────────────
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+        this.moveTo(x + r, y);
+        this.lineTo(x + w - r, y);
+        this.arcTo(x + w, y, x + w, y + r, r);
+        this.lineTo(x + w, y + h - r);
+        this.arcTo(x + w, y + h, x + w - r, y + h, r);
+        this.lineTo(x + r, y + h);
+        this.arcTo(x, y + h, x, y + h - r, r);
+        this.lineTo(x, y + r);
+        this.arcTo(x, y, x + r, y, r);
+        this.closePath();
+    };
+}
+
+// ── Skills network canvas ───────────────────────────────────
+(function () {
+    const wrap = document.getElementById('aboutSkillsFloat');
+    if (!wrap) return;
+
+    const SKILLS = [
+        'Python','RAG','LLMs','NLP','PyTorch','TensorFlow',
+        'LangChain','GCP','AWS','Azure','SQL','Computer Vision',
+        'Scikit-learn','BigQuery','Hugging Face','CrewAI',
+        'Time Series','Apache Spark','Multi-Agent','XGBoost',
+        'Feature Engineering','PostgreSQL','Embeddings','ETL','Keras'
+    ];
+
+    const PILL_H = 28;
+    const PAD_X  = 14;
+    const FONT   = '500 11px "Space Grotesk", sans-serif';
+    const SPEED  = 0.12;
+    const CONN_D = 145;
+    const YELLOW = '#FAEA5C';
+    const EDGE   = 26;
+
+    const canvas = document.createElement('canvas');
+    wrap.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    ctx.font = FONT;
+    const nodes = SKILLS.map(label => ({
+        label,
+        w: ctx.measureText(label).width + PAD_X * 2,
+        h: PILL_H,
+        x: 0, y: 0,
+        angle: Math.random() * Math.PI * 2,
+    }));
+
+    let W = 0, H = 0, ready = false;
+    let mouseX = -999, mouseY = -999, hoverIdx = -1;
+
+    canvas.addEventListener('mousemove', e => {
+        const r = canvas.getBoundingClientRect();
+        mouseX = e.clientX - r.left;
+        mouseY = e.clientY - r.top;
+    });
+    canvas.addEventListener('mouseleave', () => {
+        mouseX = -999; mouseY = -999; hoverIdx = -1;
+        canvas.style.cursor = 'default';
+    });
+
+    function scatter() {
+        const iW = W - EDGE * 2, iH = H - EDGE * 2;
+        const cols = Math.max(1, Math.round(Math.sqrt(nodes.length * iW / iH)));
+        const rows = Math.ceil(nodes.length / cols);
+        const cw = iW / cols, ch = iH / rows;
+        // Shuffle so grid order feels random
+        const order = [...Array(nodes.length).keys()].sort(() => Math.random() - 0.5);
+        order.forEach((ni, i) => {
+            const n = nodes[ni];
+            const col = i % cols, row = Math.floor(i / cols);
+            n.x = EDGE + col * cw + Math.random() * Math.max(0, cw - n.w);
+            n.y = EDGE + row * ch + Math.random() * Math.max(0, ch - n.h);
+            n.angle = Math.random() * Math.PI * 2;
+        });
+    }
+
+    // ResizeObserver fires after layout — contentRect dimensions are always correct
+    new ResizeObserver(entries => {
+        const r = entries[0].contentRect;
+        if (r.width < 10 || r.height < 10) return;
+        W = r.width; H = r.height;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width  = Math.round(W * dpr);
+        canvas.height = Math.round(H * dpr);
+        canvas.style.width  = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.resetTransform();
+        ctx.scale(dpr, dpr);
+        if (!ready) { scatter(); ready = true; }
+    }).observe(wrap);
+
+    let hiIdx = -1;
+
+    function colors() {
+        const dk = document.documentElement.getAttribute('data-theme') === 'dark';
+        return {
+            bg:  dk ? 'rgba(239,239,235,0.06)' : 'rgba(17,17,17,0.05)',
+            bd:  dk ? 'rgba(239,239,235,0.20)' : 'rgba(17,17,17,0.15)',
+            txt: dk ? 'rgba(239,239,235,0.65)' : 'rgba(17,17,17,0.62)',
+            ln:  dk ? '239,239,235'            : '17,17,17',
+        };
+    }
+
+    function drawPill(n, c, hi) {
+        ctx.beginPath();
+        ctx.roundRect(n.x, n.y, n.w, n.h, n.h / 2);
+        ctx.fillStyle   = hi ? 'rgba(250,234,92,0.12)' : c.bg;
+        ctx.strokeStyle = hi ? YELLOW : c.bd;
+        ctx.lineWidth   = hi ? 1.5 : 1;
+        ctx.fill(); ctx.stroke();
+        ctx.font = FONT;
+        ctx.fillStyle    = hi ? YELLOW : c.txt;
+        ctx.textBaseline = 'middle';
+        ctx.textAlign    = 'left';
+        ctx.fillText(n.label, n.x + PAD_X, n.y + n.h / 2);
+    }
+
+    (function loop() {
+        requestAnimationFrame(loop);
+        if (!ready) return;
+
+        ctx.clearRect(0, 0, W, H);
+        const c = colors();
+
+        // Detect hover
+        hoverIdx = -1;
+        nodes.forEach((n, i) => {
+            if (mouseX >= n.x && mouseX <= n.x + n.w &&
+                mouseY >= n.y && mouseY <= n.y + n.h) {
+                hoverIdx = i;
+            }
+        });
+        canvas.style.cursor = hoverIdx !== -1 ? 'default' : 'default';
+
+        // Move
+        nodes.forEach(n => {
+            n.angle += (Math.random() - 0.5) * 0.018;
+            n.x += Math.cos(n.angle) * SPEED;
+            n.y += Math.sin(n.angle) * SPEED;
+            if (n.x < EDGE)           { n.x = EDGE;           n.angle = Math.PI - n.angle; }
+            if (n.y < EDGE)           { n.y = EDGE;           n.angle = -n.angle; }
+            if (n.x + n.w > W - EDGE) { n.x = W - n.w - EDGE; n.angle = Math.PI - n.angle; }
+            if (n.y + n.h > H - EDGE) { n.y = H - n.h - EDGE; n.angle = -n.angle; }
+        });
+
+        // Soft separation via angle steering (no position jumps)
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const a = nodes[i], b = nodes[j];
+                const dx = (a.x + a.w / 2) - (b.x + b.w / 2);
+                const dy = (a.y + a.h / 2) - (b.y + b.h / 2);
+                const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                const need = (a.w + b.w) / 2 + 10;
+                if (dist < need) {
+                    const t = (need - dist) / need * 0.06;
+                    a.angle += t; b.angle -= t;
+                }
+            }
+        }
+
+        // Lines
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const a = nodes[i], b = nodes[j];
+                const ax = a.x + a.w / 2, ay = a.y + a.h / 2;
+                const bx = b.x + b.w / 2, by = b.y + b.h / 2;
+                const d = Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2);
+                if (d > CONN_D) continue;
+                const t = 1 - d / CONN_D;
+                const hi = i === hiIdx || j === hiIdx || i === hoverIdx || j === hoverIdx;
+                ctx.strokeStyle = hi ? `rgba(250,234,92,${t * 0.7})` : `rgba(${c.ln},${t * 0.35})`;
+                ctx.lineWidth = hi ? 1.5 : 0.8;
+                ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+            }
+        }
+
+        // Pills
+        nodes.forEach((n, i) => drawPill(n, c, i === hiIdx || i === hoverIdx));
+    })();
+}());

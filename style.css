@@ -168,6 +168,22 @@ a.nav-center:hover {
     display: block;
 }
 
+.hero-name-link:hover .hero-name {
+    color: var(--text);
+}
+
+.contact-build-link,
+.contact-build-link:visited {
+    color: #FAEA5C;
+    text-decoration: none;
+    transition: color 0.25s var(--ease);
+}
+
+.contact-build-link:hover {
+    color: var(--text);
+    text-decoration: none;
+}
+
 .nav-right {
     display: flex;
     align-items: center;
@@ -353,6 +369,7 @@ a.nav-center:hover {
     overflow: hidden;
     margin-bottom: 40px;
     color: #FAEA5C;
+    transition: color 0.25s var(--ease);
 }
 
 .hero-line-wrap {
@@ -480,7 +497,7 @@ section {
     padding-bottom: 60px;
 }
 .about-body {
-    max-width: 1300px;
+    width: 100%;
 }
 
 .about-lead {
@@ -561,12 +578,30 @@ section {
     color: var(--text-muted);
 }
 
-/* About: text full-width, meta row below */
+/* About: left text+meta, right skills panel */
 .about-cols {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: stretch;
+}
+
+.about-left {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    padding-top: 32px;
+}
+
+/* Right column wrapper — label + canvas/grid stacked, border marks the divide */
+.about-right {
+    border-left: 1px solid var(--border);
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+}
+.about-left > .section-label,
+.about-right > .section-label {
+    margin-bottom: 0;
 }
 
 .about-col-text {
@@ -612,6 +647,70 @@ section {
     display: inline;
     line-height: 1;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ABOUT SKILLS — VARIANT A: Canvas Network  ← ACTIVE
+   To switch to Variant B: comment this block out, uncomment B.
+   ══════════════════════════════════════════════════════════════ */
+.about-skills-float {
+    position: relative;
+    flex: 1;
+    min-height: 300px;
+}
+.about-skills-float canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ABOUT SKILLS — VARIANT B: Static Pill Grid  ← INACTIVE
+   To activate: remove the comment tags, comment out Variant A.
+   ══════════════════════════════════════════════════════════════
+.about-skill-grid {
+    border-left: 1px solid var(--border);
+    padding-left: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px 52px;
+    align-content: center;
+}
+.asg-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.asg-title {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+.asg-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+.asg-pills span {
+    font-family: var(--font-display);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    padding: 6px 13px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: default;
+    transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.asg-pills span:hover {
+    background: var(--hover-bg);
+    color: var(--hover-text);
+    border-color: var(--hover-bg);
+}
+*/
 
 /* ── Interests ──────────────────────────────────────────────── */
 .interests-grid {
@@ -1185,6 +1284,42 @@ section {
 .resume-header {
     padding-top: var(--nav-h);
     border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.resume-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    mix-blend-mode: overlay;
+    opacity: 0.6;
+    animation: grainShift 0.12s steps(1) infinite;
+}
+
+.resume-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+    mix-blend-mode: screen;
+    opacity: 0.5;
+    animation: grainShift 0.15s steps(1) infinite reverse;
+}
+
+.resume-header-inner,
+.resume-header-meta {
+    position: relative;
+    z-index: 1;
 }
 
 .resume-header-inner {
@@ -1331,6 +1466,22 @@ section {
     letter-spacing: -0.02em;
     line-height: 1.1;
     margin-bottom: 6px;
+    position: relative;
+    display: table;
+}
+
+.exp-role::after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    top: 0;
+    bottom: 0;
+    background: #FAEA5C;
+    opacity: 0.5;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .exp-company {
@@ -1401,7 +1552,7 @@ section {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--hover-bg);
+    background: #FAEA5C;
     transform: translateY(101%);
     transition: transform 0.55s var(--ease-spring);
     z-index: 0;
@@ -1466,16 +1617,16 @@ section {
 
 .project-card:hover .project-num,
 .project-card:hover .project-title {
-    color: var(--hover-text);
+    color: #111111;
 }
 
 .project-card:hover .project-desc {
-    color: rgba(239, 239, 235, 0.6);
+    color: rgba(17, 17, 17, 0.6);
 }
 
 .project-card:hover .project-tags span {
-    background: rgba(239, 239, 235, 0.12);
-    color: var(--hover-text);
+    background: rgba(17, 17, 17, 0.1);
+    color: #111111;
 }
 
 .project-stat {
@@ -1487,7 +1638,7 @@ section {
 }
 
 .project-card:hover .project-stat {
-    border-color: rgba(239, 239, 235, 0.18);
+    border-color: rgba(17, 17, 17, 0.18);
 }
 
 .project-stat > div {
@@ -1518,11 +1669,11 @@ section {
 }
 
 .project-card:hover .stat-val {
-    color: var(--hover-text);
+    color: #111111;
 }
 
 .project-card:hover .stat-label {
-    color: rgba(239, 239, 235, 0.5);
+    color: rgba(17, 17, 17, 0.5);
 }
 
 /* ── Skills ─────────────────────────────────────────────────── */
@@ -1712,6 +1863,16 @@ section {
     }
 
     section { padding-left: 24px; padding-right: 24px; }
+
+    .about-cols {
+        grid-template-columns: 1fr;
+    }
+
+    /* hide whichever skills variant is active on mobile */
+    .about-skills-float,
+    .about-skill-grid {
+        display: none;
+    }
 
     .about-cols .about-meta {
         grid-template-columns: 1fr 1fr;

@@ -256,6 +256,40 @@ When adding new components: use only `var(--bg)`, `var(--text)`, `var(--text-mut
 
 ---
 
+## About Section — Skills Panel Variants
+
+Two interchangeable versions exist. **Variant A is the approved final design.** Only one should be active at a time.
+
+### Variant A — Canvas Network ✓ APPROVED / ACTIVE
+Animated floating pill-shaped nodes connected by lines. Pills drift slowly around the panel. Hovering a pill turns it yellow and highlights its connecting lines. A random pill also pulses yellow on a timer. This is the intended look — do not change it without Shreyansh's approval.
+
+**How it works:**
+- `index.html`: `<div class="about-skills-float" id="aboutSkillsFloat"></div>` — empty div, canvas is injected by JS
+- `style.css`: `VARIANT A` CSS block — `position: relative`, `min-height: 360px`, `border-left`
+- `script.js`: Canvas animation at the bottom of the file. Runs automatically when `#aboutSkillsFloat` exists. Uses `ResizeObserver` for reliable dimensions, angle-based constant-speed movement (`SPEED = 0.12`), soft separation via angle steering, `CONN_D = 145` connection distance, lines at `t * 0.35` base opacity
+- `about-cols` grid: `1fr 1.5fr`, `align-items: stretch` so canvas fills full left-column height
+
+**Key behaviours to preserve if editing:**
+- Lines must be clearly visible (base alpha `≥ 0.3`)
+- Hover over a pill → that pill and its lines turn `#FAEA5C` yellow
+- Auto-highlight cycles randomly every ~700–1500ms, lasts 1600ms
+- Pills bounce off `EDGE = 26px` inner padding on all sides
+- Canvas dimensions come from `ResizeObserver contentRect` — do not revert to `offsetWidth`
+
+---
+
+### Variant B — Static Pill Grid (fallback / alternative)
+2×2 grid of categorised pills (ML & AI, Frameworks, Cloud & Data, Languages). No animation. Hover fills pill black/white. Use this if the canvas animation ever causes performance issues or needs to be disabled.
+
+| File | What to do to activate |
+|---|---|
+| `index.html` | Remove `<!--` / `-->` around the `<div class="about-skill-grid">` block; delete the Variant A div |
+| `style.css` | Remove `/*` / `*/` around the `VARIANT B` CSS block; comment out `VARIANT A` block |
+| `script.js` | No changes needed — canvas code only runs when `#aboutSkillsFloat` exists |
+| `about-cols` | Change `align-items: stretch` → `align-items: start` |
+
+---
+
 ## Adding a New Section
 
 1. Add a `<section>` with `padding: 100px 44px` (or reuse the shared `section` rule).
