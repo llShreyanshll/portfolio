@@ -53,7 +53,7 @@ document.addEventListener('mouseenter', () => {
 // ── Dark mode toggle ────────────────────────────────────────
 const toggle = document.getElementById('themeToggle');
 const html   = document.documentElement;
-let   dark   = false;
+let   dark   = true;
 
 toggle.addEventListener('click', () => {
     dark = !dark;
@@ -181,11 +181,12 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     if (!wrap) return;
 
     const SKILLS = [
-        'Python','RAG','LLMs','NLP','PyTorch','TensorFlow',
+        'Python','Java','RAG','LLMs','NLP','PyTorch','TensorFlow',
         'LangChain','GCP','AWS','Azure','SQL','Computer Vision',
-        'Scikit-learn','BigQuery','Hugging Face','CrewAI',
-        'Time Series','Apache Spark','Multi-Agent','XGBoost',
-        'Feature Engineering','PostgreSQL','Embeddings','ETL','Keras'
+        'Scikit-learn','BigQuery','Hugging Face','CrewAI','Weaviate',
+        'Time Series','Apache Spark','Multi-Agent','XGBoost','FAISS',
+        'Feature Engineering','PostgreSQL','Embeddings','ETL','Keras',
+        'Spring Boot','Prophet','Microservices'
     ];
 
     const PILL_H = 28;
@@ -202,10 +203,10 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 
     // ── Skills popup ─────────────────────────────────────────
     const SKILL_CATS = [
-        { title: 'ML & AI SYSTEMS', skills: ['RAG','LLMs','NLP','Computer Vision','Time Series','Multi-Agent','Embeddings','Feature Engineering'] },
-        { title: 'FRAMEWORKS',      skills: ['PyTorch','TensorFlow','Scikit-learn','Keras','LangChain','CrewAI','Hugging Face','XGBoost'] },
-        { title: 'CLOUD & DATA',    skills: ['GCP','AWS','Azure','BigQuery','Apache Spark','PostgreSQL','ETL'] },
-        { title: 'LANGUAGES',       skills: ['Python','SQL'] },
+        { title: 'ML & AI SYSTEMS',     skills: ['RAG','LLMs','NLP','Computer Vision','Time Series','Multi-Agent','Embeddings','Feature Engineering'] },
+        { title: 'FRAMEWORKS & TOOLS',  skills: ['PyTorch','TensorFlow','Scikit-learn','Keras','LangChain','CrewAI','Hugging Face','XGBoost','Prophet','FAISS','Weaviate'] },
+        { title: 'CLOUD & DATA',        skills: ['GCP','AWS','Azure','BigQuery','Apache Spark','PostgreSQL','ETL'] },
+        { title: 'LANGUAGES & BACKEND', skills: ['Python','SQL','Java','Spring Boot','Microservices'] },
     ];
     const popup = document.createElement('div');
     popup.className = 'skills-popup';
