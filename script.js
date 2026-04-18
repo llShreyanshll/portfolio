@@ -244,8 +244,11 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 
     let W = 0, H = 0, ready = false;
     let mouseX = -999, mouseY = -999, hoverIdx = -1;
-    let prevHoverForPopup = -1, hoverTimer = null;
+    let hoverTimer = null;
 
+    canvas.addEventListener('mouseenter', () => {
+        hoverTimer = setTimeout(showPopup, 3000);
+    });
     canvas.addEventListener('mousemove', e => {
         const r = canvas.getBoundingClientRect();
         mouseX = e.clientX - r.left;
@@ -255,7 +258,6 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
         mouseX = -999; mouseY = -999; hoverIdx = -1;
         canvas.style.cursor = 'default';
         clearTimeout(hoverTimer);
-        prevHoverForPopup = -1;
     });
     canvas.addEventListener('click', () => {
         if (hoverIdx !== -1) showPopup();
@@ -338,13 +340,6 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
             }
         });
         canvas.style.cursor = hoverIdx !== -1 ? 'pointer' : 'default';
-
-        // 3s hover timer → show popup
-        if (hoverIdx !== prevHoverForPopup) {
-            clearTimeout(hoverTimer);
-            prevHoverForPopup = hoverIdx;
-            if (hoverIdx !== -1) hoverTimer = setTimeout(showPopup, 3000);
-        }
 
         // Move
         nodes.forEach(n => {
