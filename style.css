@@ -663,6 +663,268 @@ section {
     display: block;
 }
 
+/* ── Skills popup card ──────────────────────────────────────── */
+.skills-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239,239,235,0.88);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+}
+[data-theme="dark"] .skills-popup {
+    background: rgba(17,17,17,0.88);
+}
+.skills-popup.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.skills-popup-card {
+    width: 70vw;
+    max-width: 1000px;
+    background: #FAEA5C;
+    border: none;
+    padding: 48px 56px 56px;
+    position: relative;
+    transform: translateY(10px);
+    transition: transform 0.3s var(--ease);
+}
+.skills-popup.active .skills-popup-card {
+    transform: translateY(0);
+}
+.skills-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+.skills-popup-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    color: rgba(17,17,17,0.55);
+    font-family: var(--font-display);
+}
+.skills-popup-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: rgba(17,17,17,0.55);
+    font-family: var(--font-display);
+    padding: 0;
+    transition: color 0.2s;
+    line-height: 1;
+}
+.skills-popup-close:hover { color: #111111; }
+.skills-popup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 56px;
+}
+.spg-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+.spg-title {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    color: rgba(17,17,17,0.55);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+}
+.spg-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.spg-pills span {
+    font-size: 11px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    padding: 4px 11px;
+    border: 1px solid rgba(17,17,17,0.2);
+    border-radius: 999px;
+    color: #111111;
+    letter-spacing: 0.04em;
+    transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+    cursor: default;
+}
+.spg-pills span:hover {
+    background: #111111;
+    color: #FAEA5C;
+    border-color: #111111;
+}
+
+/* ── Experience popup card ──────────────────────────────────── */
+.exp-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239,239,235,0.88);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+}
+[data-theme="dark"] .exp-popup {
+    background: rgba(17,17,17,0.88);
+}
+.exp-popup.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.exp-popup-card {
+    width: 70vw;
+    max-width: 1000px;
+    max-height: 85vh;
+    background: #FAEA5C;
+    border: none;
+    padding: 48px 56px 56px;
+    position: relative;
+    transform: translateY(10px);
+    transition: transform 0.3s var(--ease);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.exp-popup.active .exp-popup-card {
+    transform: translateY(0);
+}
+.exp-popup-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-shrink: 0;
+}
+.exp-popup-meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.exp-popup-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: rgba(17,17,17,0.4);
+    margin-top: 3px;
+}
+.exp-popup-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.exp-popup-role {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: #111111;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.exp-popup-company {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: rgba(17,17,17,0.55);
+    text-transform: uppercase;
+    font-family: var(--font-display);
+}
+.exp-popup-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgba(17,17,17,0.45);
+    padding: 0;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+.exp-popup-close:hover { color: #111111; }
+.exp-popup-body {
+    overflow-y: auto;
+    flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(17,17,17,0.2) transparent;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 48px;
+    align-content: start;
+}
+.exp-popup-body::-webkit-scrollbar { width: 4px; }
+.exp-popup-body::-webkit-scrollbar-track { background: transparent; }
+.exp-popup-body::-webkit-scrollbar-thumb { background: rgba(17,17,17,0.2); border-radius: 2px; }
+.epb-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.epb-title {
+    font-family: var(--font-display);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    color: rgba(17,17,17,0.45);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(17,17,17,0.15);
+    padding-bottom: 6px;
+}
+.epb-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.epb-list li {
+    font-size: 12.5px;
+    font-family: var(--font-body);
+    color: #111111;
+    line-height: 1.55;
+    padding-left: 14px;
+    position: relative;
+}
+.epb-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(17,17,17,0.35);
+    font-size: 11px;
+}
+.exp-item[data-exp] {
+    cursor: pointer;
+}
+.exp-item-expand {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    color: rgba(17,17,17,0.0);
+    text-transform: uppercase;
+    margin-top: 12px;
+    display: inline-block;
+    transition: color 0.3s var(--ease);
+}
+.exp-item:hover .exp-item-expand {
+    color: var(--text-muted);
+}
+
 /* ══════════════════════════════════════════════════════════════
    ABOUT SKILLS — VARIANT B: Static Pill Grid  ← INACTIVE
    To activate: remove the comment tags, comment out Variant A.
