@@ -581,9 +581,16 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
         document.body.style.overflow = '';
     }
 
-    // Trigger on exp-item click
+    // Trigger on exp-item click or 3s stationary hover
     document.querySelectorAll('.exp-item[data-exp]').forEach(item => {
+        let expHoverTimer = null;
         item.addEventListener('click', () => openExpPopup(item.dataset.exp));
+        item.addEventListener('mouseenter', () => {
+            expHoverTimer = setTimeout(() => openExpPopup(item.dataset.exp), 3000);
+        });
+        item.addEventListener('mouseleave', () => {
+            clearTimeout(expHoverTimer);
+        });
     });
 
     // Close handlers
